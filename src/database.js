@@ -1,5 +1,6 @@
 
-const pkg = require("@prisma/client");
+const pkg = require("@prisma/client"); 
+
 
 const { PrismaClient } = pkg;
 
