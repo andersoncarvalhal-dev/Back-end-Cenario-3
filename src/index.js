@@ -21,10 +21,43 @@ app.post("/user", async (req, res) => {
 
 //rota que apaga um usuário, passando o id
 app.delete("/user/:id", async (req, res) => {
+  /* 
+  
+    try {
+    const id = req.params.id;
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+  
+  */
 });
 
 //rota que atualiza um usuário, pelo id
 app.put("/user/:id", async (req, res) => {
+
+  /* 
+  
+  try {
+    const id = req.params.id;
+    const updatedUser = await User.findByIdAndUpdate(id, { nome: req.body.nome }, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+
+  */
 });
 
 //rota que lista usuários que contenham o nome específico
