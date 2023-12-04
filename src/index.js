@@ -16,12 +16,11 @@ app.get("/users", async (req, res) => {
 });
 
 //rota que cadastra um usuário
-app.post("/user", async (req, res) => {
+app.post("/users", async (req, res) => {
 });
 
 //rota que apaga um usuário, passando o id
-app.delete("/user/:id", async (req, res) => {
-  /* 
+app.delete("/users/:id", async (req, res) => {
   
     try {
     const id = req.params.id;
@@ -36,13 +35,11 @@ app.delete("/user/:id", async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
   
-  */
 });
 
 //rota que atualiza um usuário, pelo id
-app.put("/user/:id", async (req, res) => {
-
-  /* 
+app.put("/users/:id", async (req, res) => {
+ 
   
   try {
     const id = req.params.id;
@@ -57,7 +54,7 @@ app.put("/user/:id", async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 
-  */
+
 });
 
 //rota que lista usuários que contenham o nome específico
@@ -65,7 +62,7 @@ app.get("/users/:name", async (req, res) => {
 });
 
 //rota que lista um usuário pelo id
-app.get("/user/:id", async (req, res) => {
+app.get("/users/:id", async (req, res) => {
 });
 
 // Inicie o servidor na porta especificada
