@@ -41,6 +41,7 @@ app.delete("/users/:id", async (req, res) => {
 app.put("/users/:id", async (req, res) => {
  
   
+  
   try {
     const id = req.params.id;
     const updatedUser = await User.findByIdAndUpdate(id, { nome: req.body.nome }, { new: true });
