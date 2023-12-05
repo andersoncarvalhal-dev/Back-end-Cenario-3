@@ -41,11 +41,18 @@ app.get("/user/:name", async (req, res) => {
 });
 
 
-app.delete("/user/:id", async (req, res) => {
+/* app.delete("/user/:id", async (req, res) => {
   
-    try {
-    const id = req.params.id;
-    const deletedUser = await User.findByIdAndDelete(id);
+// Rota que apaga um usuário, passando o nome */
+app.delete("/user", async (req, res) => {
+  try {
+    const name = req.query.name;
+
+    if (!name) {
+      return res.status(400).json({ error: 'Name parameter is required' });
+    }
+
+    const deletedUser = await User.findOneAndDelete({ nome: name });
 
     if (!deletedUser) {
       return res.status(404).json({ error: 'User not found' });
@@ -53,11 +60,11 @@ app.delete("/user/:id", async (req, res) => {
 
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-  
-  
 });
+
 
 app.put("/user/:id", async (req, res) => {
  
