@@ -22,7 +22,7 @@ app.post("/user", async (req, res) => {
 //rota que apaga um usuário, passando o id
 app.delete("/user/:id", async (req, res) => {
   
-    try {
+/*     try {
     const id = req.params.id;
     const deletedUser = await User.findByIdAndDelete(id);
 
@@ -33,7 +33,7 @@ app.delete("/user/:id", async (req, res) => {
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
-  }
+  } */
   
   
 });
@@ -42,7 +42,7 @@ app.delete("/user/:id", async (req, res) => {
 app.put("/user/:id", async (req, res) => {
  
   
-  try {
+/*   try {
     const id = req.params.id;
     const updatedUser = await User.findByIdAndUpdate(id, { nome: req.body.nome }, { new: true });
 
@@ -54,7 +54,7 @@ app.put("/user/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
-
+ */
 
 });
 
