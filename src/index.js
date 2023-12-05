@@ -11,18 +11,40 @@ const cors = require("cors");
 app.use(bodyParser.json());
 app.use(cors());
 
-//rota que lista todos os usuários cadastrados
+
 app.get("/users", async (req, res) => {
+  const users = await prisma.user.findMany();
+  if (users.length > 0) return res.status(200).send(users);
+  return res.send("No users found");
 });
 
-//rota que cadastra um usuário
 app.post("/user", async (req, res) => {
+  const data = req.body;
+  await prisma.user.create({
+    data: {
+      nome: data.nome,
+    },
+  });
+  return res.sendStatus(201);
 });
+
+//rota para buscar um usuário pelo nome
+app.get("/user/:name", async (req, res) => {
+  const nome = req.params.name;
+  const user = await prisma.user.findMany({
+    where: {
+      nome: nome,
+    },
+  });
+  if (user.length > 0) return res.status(200).send(user);
+  return res.send("No user found");
+});
+
 
 //rota que apaga um usuário, passando o id
 app.delete("/user/:id", async (req, res) => {
   
-/*     try {
+    try {
     const id = req.params.id;
     const deletedUser = await User.findByIdAndDelete(id);
 
@@ -33,7 +55,7 @@ app.delete("/user/:id", async (req, res) => {
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
-  } */
+  }
   
   
 });
@@ -42,7 +64,7 @@ app.delete("/user/:id", async (req, res) => {
 app.put("/user/:id", async (req, res) => {
  
   
-/*   try {
+  try {
     const id = req.params.id;
     const updatedUser = await User.findByIdAndUpdate(id, { nome: req.body.nome }, { new: true });
 
@@ -54,19 +76,11 @@ app.put("/user/:id", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
- */
+
 
 });
 
-//rota que lista usuários que contenham o nome específico
-app.get("/users/:name", async (req, res) => {
-});
 
-//rota que lista um usuário pelo id
-app.get("/user/:id", async (req, res) => {
-});
-
-// Inicie o servidor na porta especificada
 const server = app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
