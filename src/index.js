@@ -41,7 +41,6 @@ app.get("/user/:name", async (req, res) => {
 });
 
 
-//rota que apaga um usuário, passando o id
 app.delete("/user/:id", async (req, res) => {
   
     try {
@@ -60,7 +59,6 @@ app.delete("/user/:id", async (req, res) => {
   
 });
 
-//rota que atualiza um usuário, pelo id
 app.put("/user/:id", async (req, res) => {
  
   
