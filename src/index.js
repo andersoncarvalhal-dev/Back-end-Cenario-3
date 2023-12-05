@@ -22,7 +22,7 @@ app.post("/user", async (req, res) => {
   const data = req.body;
   await prisma.user.create({
     data: {
-      nome: data.nome,
+      name: data.nome,
     },
   });
   return res.sendStatus(201);
@@ -33,7 +33,7 @@ app.get("/user/:name", async (req, res) => {
   const nome = req.params.name;
   const user = await prisma.user.findMany({
     where: {
-      nome: nome,
+      name: nome,
     },
   });
   if (user.length > 0) return res.status(200).send(user);
@@ -66,7 +66,7 @@ app.put("/user/:id", async (req, res) => {
   
   try {
     const id = req.params.id;
-    const updatedUser = await User.findByIdAndUpdate(id, { nome: req.body.nome }, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(id, { name: req.body.nome }, { new: true });
 
     if (!updatedUser) {
       return res.status(404).json({ error: 'User not found' });
